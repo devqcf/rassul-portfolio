@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rassul Kainazarov — Flutter Developer</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #0a0a0f; color: #e8e8f0; line-height: 1.6; }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+        
+        /* Hero */
+        .hero { text-align: center; padding: 5rem 0 4rem; }
+        .hero h1 { font-size: 2.8rem; font-weight: 700; margin-bottom: 0.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero .subtitle { font-size: 1.3rem; color: #8888a0; margin-bottom: 1.5rem; }
+        .hero .tags { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
+        .tag { background: #1a1a2e; border: 1px solid #333355; padding: 0.3rem 1rem; border-radius: 20px; font-size: 0.85rem; color: #9999bb; }
+        .hero .cta { display: flex; gap: 1rem; justify-content: center; }
+        .btn { padding: 0.8rem 2rem; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all 0.3s; }
+        .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3); }
+        .btn-secondary { background: transparent; color: #8888a0; border: 1px solid #333355; }
+        .btn-secondary:hover { border-color: #667eea; color: #667eea; }
+        
+        /* About */
+        .about { background: #12121a; border-radius: 16px; padding: 2.5rem; margin: 2rem 0; border: 1px solid #1e1e2e; }
+        .about h2 { font-size: 1.4rem; margin-bottom: 1rem; color: #667eea; }
+        .about p { color: #b0b0c0; font-size: 1.05rem; }
+        
+        /* Skills */
+        .skills { margin: 3rem 0; }
+        .skills h2 { text-align: center; font-size: 1.8rem; margin-bottom: 2rem; }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+        .skill-card { background: #12121a; border-radius: 12px; padding: 1.5rem; border: 1px solid #1e1e2e; }
+        .skill-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; color: #e8e8f0; }
+        .skill-card p { color: #8888a0; font-size: 0.9rem; }
+        
+        /* Projects */
+        .projects { margin: 3rem 0; }
+        .projects h2 { text-align: center; font-size: 1.8rem; margin-bottom: 2rem; }
+        .project-card { background: #12121a; border-radius: 16px; overflow: hidden; margin-bottom: 2rem; border: 1px solid #1e1e2e; transition: transform 0.3s; }
+        .project-card:hover { transform: translateY(-4px); border-color: #333355; }
+        .project-header { padding: 1.5rem 2rem; border-bottom: 1px solid #1e1e2e; display: flex; justify-content: space-between; align-items: center; }
+        .project-header h3 { font-size: 1.3rem; color: #667eea; }
+        .project-header .lang { background: #1a1a2e; padding: 0.3rem 0.8rem; border-radius: 6px; font-size: 0.85rem; color: #8888a0; }
+        .project-body { padding: 1.5rem 2rem; }
+        .project-body p { color: #b0b0c0; margin-bottom: 1rem; }
+        .project-features { list-style: none; }
+        .project-features li { color: #9999bb; padding: 0.3rem 0; padding-left: 1.5rem; position: relative; }
+        .project-features li::before { content: "→"; position: absolute; left: 0; color: #667eea; }
+        .project-links { display: flex; gap: 1rem; margin-top: 1rem; }
+        .project-links a { color: #667eea; text-decoration: none; font-size: 0.9rem; }
+        .project-links a:hover { text-decoration: underline; }
+        
+        /* Experience */
+        .experience { margin: 3rem 0; }
+        .experience h2 { text-align: center; font-size: 1.8rem; margin-bottom: 2rem; }
+        .exp-item { background: #12121a; border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 1rem; border: 1px solid #1e1e2e; }
+        .exp-item h3 { color: #e8e8f0; font-size: 1.1rem; }
+        .exp-item .company { color: #667eea; margin-bottom: 0.3rem; }
+        .exp-item .period { color: #666680; font-size: 0.9rem; margin-bottom: 0.8rem; }
+        .exp-item ul { color: #9999bb; padding-left: 1.2rem; }
+        .exp-item ul li { margin-bottom: 0.3rem; }
+        
+        /* Contact */
+        .contact { text-align: center; padding: 4rem 0; }
+        .contact h2 { font-size: 1.8rem; margin-bottom: 1rem; }
+        .contact p { color: #8888a0; margin-bottom: 2rem; }
+        .contact-links { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; }
+        .contact-links a { color: #667eea; text-decoration: none; font-size: 1rem; }
+        .contact-links a:hover { text-decoration: underline; }
+        
+        /* Footer */
+        footer { text-align: center; padding: 2rem; color: #444455; font-size: 0.85rem; border-top: 1px solid #1e1e2e; margin-top: 2rem; }
+        
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2rem; }
+            .hero .cta { flex-direction: column; }
+            .container { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero -->
+        <section class="hero">
+            <h1>Rassul Kainazarov</h1>
+            <p class="subtitle">Flutter Developer · Building Cross-Platform Mobile Experiences</p>
+            <div class="tags">
+                <span class="tag">Flutter / Dart</span>
+                <span class="tag">iOS & Android</span>
+                <span class="tag">REST APIs</span>
+                <span class="tag">Firebase</span>
+                <span class="tag">Maps Integration</span>
+                <span class="tag">State Management</span>
+            </div>
+            <div class="cta">
+                <a href="mailto:anortus@icloud.com" class="btn btn-primary">Get in Touch</a>
+                <a href="https://github.com/devqcf" target="_blank" class="btn btn-secondary">GitHub Profile</a>
+            </div>
+        </section>
+        
+        <!-- About -->
+        <section class="about">
+            <h2>About Me</h2>
+            <p>Mobile developer with 3+ years of hands-on experience building production-ready apps for iOS and Android using Flutter. I've shipped everything from messenger apps to sports platforms with real-time maps, payments, and social features. Passionate about clean architecture, smooth UI, and apps that people actually want to use.</p>
+        </section>
+        
+        <!-- Skills -->
+        <section class="skills">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>🎯 Frontend & UI</h3>
+                    <p>Flutter, Dart, adaptive layouts, Material Design, custom animations, responsive interfaces</p>
+                </div>
+                <div class="skill-card">
+                    <h3>🔗 Backend & APIs</h3>
+                    <p>REST API integration, Firebase Firestore, real-time data, authentication flows</p>
+                </div>
+                <div class="skill-card">
+                    <h3>📱 Mobile Native</h3>
+                    <p>iOS & Android builds, platform channels, native performance tuning, app store deployment</p>
+                </div>
+                <div class="skill-card">
+                    <h3>🗺️ Maps & Location</h3>
+                    <p>Google Maps integration, location services, real-time markers, geo-based features</p>
+                </div>
+                <div class="skill-card">
+                    <h3>💳 Payments & Social</h3>
+                    <p>In-app payments, chat systems, user profiles, post feeds, social interactions</p>
+                </div>
+                <div class="skill-card">
+                    <h3>🛠️ DevOps & Tools</h3>
+                    <p>Git, CI/CD, code review, debugging, performance optimization, crash fixing</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Projects -->
+        <section class="projects">
+            <h2>Featured Projects</h2>
+            
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Flutgram</h3>
+                    <span class="lang">Flutter / Dart</span>
+                </div>
+                <div class="project-body">
+                    <p>A full-featured Flutter messenger application with real-time messaging, user authentication, and a polished mobile-first UI. Cross-platform support for iOS, Android, macOS, and Web.</p>
+                    <ul class="project-features">
+                        <li>User registration & authentication flow</li>
+                        <li>Real-time chat with message history</li>
+                        <li>Cross-platform (iOS, Android, macOS, Web)</li>
+                        <li>Clean Material Design UI</li>
+                        <li>Push notification ready</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://github.com/devqcf/flutgram" target="_blank">View on GitHub →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>GoToMeet — Sports App</h3>
+                    <span class="lang">Flutter / Dart</span>
+                </div>
+                <div class="project-body">
+                    <p>Full released sports application connecting users with local sports events and community activities. Features real-time map display and backend integration for live event updates.</p>
+                    <ul class="project-features">
+                        <li>Interactive map with real-time event markers</li>
+                        <li>Localization support (EN/RU)</li>
+                        <li>Backend API integration</li>
+                        <li>User accounts and profiles</li>
+                        <li>Community sports activity feeds</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://github.com/devqcf/gotome_mobile" target="_blank">View on GitHub →</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Grandmaster Mobile</h3>
+                    <span class="lang">Flutter / Dart</span>
+                </div>
+                <div class="project-body">
+                    <p>Sports management platform with account management, real-time updates, and community features. Designed for managing sports groups and local events.</p>
+                    <ul class="project-features">
+                        <li>Account & team management</li>
+                        <li>Real-time sports updates</li>
+                        <li>Community engagement features</li>
+                        <li>iOS & Android full releases</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://github.com/devqcf/grandmaster_mobile" target="_blank">View on GitHub →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Experience -->
+        <section class="experience">
+            <h2>Work Experience</h2>
+            
+            <div class="exp-item">
+                <h3>Flutter Developer</h3>
+                <p class="company">Freelance · Remote</p>
+                <p class="period">2022 — Present</p>
+                <ul>
+                    <li>Building cross-platform mobile apps for international clients</li>
+                    <li>Implemented social features including chat, profiles, and post feeds</li>
+                    <li>Integrated maps, payments, and real-time data features</li>
+                    <li>Delivered production-ready apps for iOS and Android</li>
+                </ul>
+            </div>
+            
+            <div class="exp-item">
+                <h3>Flutter Developer</h3>
+                <p class="company">Aristoss · Aqtobe, Kazakhstan</p>
+                <p class="period">Feb 2024 — Mar 2024</p>
+                <ul>
+                    <li>Developed mobile plugins and reusable components</li>
+                    <li>Built and shipped apps to iOS and Android stores</li>
+                </ul>
+            </div>
+            
+            <div class="exp-item">
+                <h3>Flutter Developer</h3>
+                <p class="company">Moonsolution · Aqtobe, Kazakhstan</p>
+                <p class="period">Jun 2022 — Oct 2022</p>
+                <ul>
+                    <li>Full mobile app development from scratch</li>
+                    <li>Integrated social features: chat, profiles, post feeds</li>
+                    <li>Implemented maps, video playback, and in-app payments</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Contact -->
+        <section class="contact">
+            <h2>Let's Build Something</h2>
+            <p>Open for freelance projects and full-time opportunities. Remote only.</p>
+            <div class="contact-links">
+                <a href="mailto:anortus@icloud.com">📧 anortus@icloud.com</a>
+                <a href="https://github.com/devqcf">💻 GitHub</a>
+                <a href="https://t.me/devqcf">✈️ Telegram</a>
+            </div>
+        </section>
+        
+        <footer>
+            <p>Built with Flutter · Rassul Kainazarov © 2025</p>
+        </footer>
+    </div>
+</body>
+</html>
